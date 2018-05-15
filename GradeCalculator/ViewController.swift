@@ -18,9 +18,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scoreField: UITextField!
     @IBOutlet weak var finalGradeLabel: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var finalGradeField: UITextField!
     @IBOutlet weak var calculateButton: UIButton!
-    @IBOutlet weak var finalGradeWeightField: UITextField!
+    @IBOutlet weak var finalGradeField: UITextField!
+    @IBOutlet weak var desiredFinalGradeField: UITextField!
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var hwWeight: Float = 0.0
@@ -150,7 +150,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             totalWeight = totalWeight + finalWeight
             grade = grade + (finalScore/100)*finalWeight
         }
-        finalGradeLabel.text = String((grade/totalWeight)*100) + "%"
+        if (totalWeight == 0.0) {
+            finalGradeLabel.text = "0.00%"
+        } else {
+            finalGradeLabel.text = String((grade/totalWeight)*100) + "%"
+        }
     }
 
     // MARK: UITextFieldDelegate
@@ -211,18 +215,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     scoreSlider.setValue(finalScore, animated: true)
                 }
             }
-        } else if (textField.restorationIdentifier == "finalGradeField") {
+        } else if (textField.restorationIdentifier == "desiredGradeField") {
             if (Float(textField.text!) == nil) {
                 errorLabel.text = "Please enter a valid number"
             } else {
                 desiredFinal = Float(textField.text!)!
+                print(desiredFinal)
                 errorLabel.text = " "
             }
-        } else if (textField.restorationIdentifier == "finalGradeWeightField") {
+        } else if (textField.restorationIdentifier == "finalWeightField") {
             if (Float(textField.text!) == nil) {
                 errorLabel.text = "Please enter a valid number"
             } else {
                 finalGradeWeight = Float(textField.text!)!
+                print(finalGradeWeight)
                 errorLabel.text = " "
             }
         }
@@ -233,6 +239,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func selectSection(_ sender: UISegmentedControl) {
         setFields()
     }
+    
+    @IBAction func setFinalWeight(_ sender: UITextField) {
+        if (Float(sender.text!) == nil) {
+            errorLabel.text = "Please enter a valid number"
+        } else {
+            finalGradeWeight = Float(sender.text!)!
+            errorLabel.text = " "
+        }
+    }
+    
+    @IBAction func setDesiredGrade(_ sender: UITextField) {
+        if (Float(sender.text!) == nil) {
+            errorLabel.text = "Please enter a valid number"
+        } else {
+            desiredFinal = Float(sender.text!)!
+            errorLabel.text = " "
+        }
+    }
+    
     
     @IBAction func adjustWeightSlider(_ sender: UISlider) {
         if (sectionControl.selectedSegmentIndex == 0) {
@@ -330,8 +355,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             totalWeight = totalWeight + finalWeight
             grade = grade + (finalScore/100)*finalWeight
         }
-        finalGradeLabel.text = String((grade/totalWeight)*100) + "%"
-
         if (finalGradeWeight > 0.0) {
             needed = (desiredFinal/100)*(totalWeight + finalGradeWeight)-grade
             needed = (needed/finalGradeWeight)*100
