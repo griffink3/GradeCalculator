@@ -20,6 +20,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var finalGradeField: UITextField!
     @IBOutlet weak var calculateButton: UIButton!
+    @IBOutlet weak var finalGradeWeightField: UITextField!
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var hwWeight: Float = 0.0
@@ -35,6 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var finalWeight: Float = 0.0
     var finalScore: Float = 0.0
     var desiredFinal: Float = 0.0
+    var finalGradeWeight: Float = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +150,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             totalWeight = totalWeight + finalWeight
             grade = grade + (finalScore/100)*finalWeight
         }
-        finalGradeLabel.text = String(grade*totalWeight) + "%"
+        finalGradeLabel.text = String((grade/totalWeight)*100) + "%"
     }
 
     // MARK: UITextFieldDelegate
@@ -214,6 +216,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 errorLabel.text = "Please enter a valid number"
             } else {
                 desiredFinal = Float(textField.text!)!
+                errorLabel.text = " "
+            }
+        } else if (textField.restorationIdentifier == "finalGradeWeightField") {
+            if (Float(textField.text!) == nil) {
+                errorLabel.text = "Please enter a valid number"
+            } else {
+                finalGradeWeight = Float(textField.text!)!
                 errorLabel.text = " "
             }
         }
@@ -296,23 +305,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func calculate(_ sender: UIButton) {
         var needed: Float = 0.0
         var grade: Float = 0.0
+        var totalWeight: Float = 0.0
         if (hwWeight > 0.0) {
-            grade = grade + (hwScore/hwWeight)
+            totalWeight = totalWeight + hwWeight
+            grade = grade + (hwScore/100)*hwWeight
         }
         if (labWeight > 0.0) {
-            grade = grade + (labScore/labWeight)
+            totalWeight = totalWeight + labWeight
+            grade = grade + (labScore/100)*labWeight
         }
         if (midtermWeight > 0.0) {
-            grade = grade + (midtermScore/midtermWeight)
+            totalWeight = totalWeight + midtermWeight
+            grade = grade + (midtermScore/100)*midtermWeight
         }
         if (projWeight > 0.0) {
-            grade = grade + (projScore/projWeight)
+            totalWeight = totalWeight + projWeight
+            grade = grade + (projScore/100)*projWeight
         }
         if (participationWeight > 0.0) {
-            grade = grade + (participationScore/participationWeight)
+            totalWeight = totalWeight + participationWeight
+            grade = grade + (participationScore/100)*participationWeight
         }
         if (finalWeight > 0.0) {
-            needed = ((desiredFinal/100) - grade) * finalWeight
+            totalWeight = totalWeight + finalWeight
+            grade = grade + (finalScore/100)*finalWeight
+        }
+        finalGradeLabel.text = String((grade/totalWeight)*100) + "%"
+
+        if (finalGradeWeight > 0.0) {
+            needed = (desiredFinal/100)*(totalWeight + finalGradeWeight)-grade
+            needed = (needed/finalGradeWeight)*100
         } else {
             needed = 0.0
         }
