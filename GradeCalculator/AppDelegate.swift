@@ -12,7 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var neededGrade: Float = 0.0
+    var hwWeight: Float = 0.0
+    var hwScore: Float = 0.0
+    var labWeight: Float = 0.0
+    var labScore: Float = 0.0
+    var midtermWeight: Float = 0.0
+    var midtermScore: Float = 0.0
+    var projWeight: Float = 0.0
+    var projScore: Float = 0.0
+    var participationWeight: Float = 0.0
+    var participationScore: Float = 0.0
+    var finalWeight: Float = 0.0
+    var finalScore: Float = 0.0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

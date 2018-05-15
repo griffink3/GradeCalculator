@@ -13,6 +13,7 @@
 		8562171F20AB2CB000BA999D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8562171E20AB2CB000BA999D /* Assets.xcassets */; };
 		8562172220AB2CB000BA999D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8562172020AB2CB000BA999D /* LaunchScreen.storyboard */; };
 		8562172D20AB2CB000BA999D /* GradeCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562172C20AB2CB000BA999D /* GradeCalculatorTests.swift */; };
+		8562173820AB478000BA999D /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562173720AB478000BA999D /* ViewController1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		8562172820AB2CB000BA999D /* GradeCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradeCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8562172C20AB2CB000BA999D /* GradeCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCalculatorTests.swift; sourceTree = "<group>"; };
 		8562172E20AB2CB000BA999D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8562173720AB478000BA999D /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				8562171E20AB2CB000BA999D /* Assets.xcassets */,
 				8562172020AB2CB000BA999D /* LaunchScreen.storyboard */,
 				8562172320AB2CB000BA999D /* Info.plist */,
+				8562173720AB478000BA999D /* ViewController1.swift */,
 			);
 			path = GradeCalculator;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8562173820AB478000BA999D /* ViewController1.swift in Sources */,
 				8562171A20AB2CAD00BA999D /* ViewController.swift in Sources */,
 				8562171820AB2CAD00BA999D /* AppDelegate.swift in Sources */,
 			);
