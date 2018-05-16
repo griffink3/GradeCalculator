@@ -37,12 +37,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var finalScore: Float = 0.0
     var desiredFinal: Float = 0.0
     var finalGradeWeight: Float = 0.0
+    var activeField: UITextField?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         weightField.delegate = self
         scoreField.delegate = self
+        finalGradeField.delegate = self
+        desiredFinalGradeField.delegate = self
         finalGradeLabel.adjustsFontSizeToFitWidth = true
         finalGradeLabel.textAlignment = .center
         finalGradeLabel.text = "0.00%"
@@ -52,6 +55,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setLocalVar()
         setFields()
         calculateGrade()
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if (activeField != nil) {
+            if (activeField?.restorationIdentifier != "weightField" && activeField?.restorationIdentifier != "scoreField") {
+                if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                    if self.view.frame.origin.y == 0 {
+                        self.view.frame.origin.y -= keyboardSize.height
+                    }
+                }
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -158,6 +184,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     // MARK: UITextFieldDelegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeField = textField
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
@@ -220,7 +250,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 errorLabel.text = "Please enter a valid number"
             } else {
                 desiredFinal = Float(textField.text!)!
-                print(desiredFinal)
                 errorLabel.text = " "
             }
         } else if (textField.restorationIdentifier == "finalWeightField") {
@@ -228,11 +257,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 errorLabel.text = "Please enter a valid number"
             } else {
                 finalGradeWeight = Float(textField.text!)!
-                print(finalGradeWeight)
                 errorLabel.text = " "
             }
         }
         calculateGrade()
+        activeField = nil
     }
     
     // MARK: Actions
@@ -240,44 +269,57 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setFields()
     }
     
-    @IBAction func setFinalWeight(_ sender: UITextField) {
-        if (Float(sender.text!) == nil) {
-            errorLabel.text = "Please enter a valid number"
-        } else {
-            finalGradeWeight = Float(sender.text!)!
-            errorLabel.text = " "
-        }
-    }
-    
-    @IBAction func setDesiredGrade(_ sender: UITextField) {
-        if (Float(sender.text!) == nil) {
-            errorLabel.text = "Please enter a valid number"
-        } else {
-            desiredFinal = Float(sender.text!)!
-            errorLabel.text = " "
-        }
-    }
-    
+//    @IBAction func beginSettingFinalWeight(_ sender: UITextField) {
+//        activeField = sender
+//    }
+//
+//    @IBAction func beginSettingDesiredGrade(_ sender: UITextField) {
+//        activeField = sender
+//    }
+//
+//    @IBAction func setFinalWeight(_ sender: UITextField) {
+//        if (Float(sender.text!) == nil) {
+//            errorLabel.text = "Please enter a valid number"
+//        } else {
+//            finalGradeWeight = Float(sender.text!)!
+//            errorLabel.text = " "
+//        }
+//        sender.resignFirstResponder()
+//        textFieldShouldReturn(sender)
+//        activeField = nil
+//    }
+//
+//    @IBAction func setDesiredGrade(_ sender: UITextField) {
+//        if (Float(sender.text!) == nil) {
+//            errorLabel.text = "Please enter a valid number"
+//        } else {
+//            desiredFinal = Float(sender.text!)!
+//            errorLabel.text = " "
+//        }
+//        sender.resignFirstResponder()
+//        textFieldShouldReturn(sender)
+//        activeField = nil
+//    }
     
     @IBAction func adjustWeightSlider(_ sender: UISlider) {
         if (sectionControl.selectedSegmentIndex == 0) {
             hwWeight = sender.value
-            weightField.text = String(hwWeight)
+            weightField.text = String(Int(hwWeight))
         } else if (sectionControl.selectedSegmentIndex == 1) {
             labWeight = sender.value
-            weightField.text = String(labWeight)
+            weightField.text = String(Int(labWeight))
         } else if (sectionControl.selectedSegmentIndex == 2) {
             midtermWeight = sender.value
-            weightField.text = String(midtermWeight)
+            weightField.text = String(Int(midtermWeight))
         } else if (sectionControl.selectedSegmentIndex == 3) {
             projWeight = sender.value
-            weightField.text = String(projWeight)
+            weightField.text = String(Int(projWeight))
         } else if (sectionControl.selectedSegmentIndex == 4) {
             participationWeight = sender.value
-            weightField.text = String(participationWeight)
+            weightField.text = String(Int(participationWeight))
         } else if (sectionControl.selectedSegmentIndex == 5) {
             finalWeight = sender.value
-            weightField.text = String(finalWeight)
+            weightField.text = String(Int(finalWeight))
         }
         calculateGrade()
     }
@@ -285,22 +327,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func adjustScoreSlider(_ sender: UISlider) {
         if (sectionControl.selectedSegmentIndex == 0) {
             hwScore = sender.value
-            weightField.text = String(hwScore)
+            scoreField.text = String(Int(hwScore))
         } else if (sectionControl.selectedSegmentIndex == 1) {
             labScore = sender.value
-            weightField.text = String(labScore)
+            scoreField.text = String(Int(labScore))
         } else if (sectionControl.selectedSegmentIndex == 2) {
             midtermScore = sender.value
-            weightField.text = String(midtermScore)
+            scoreField.text = String(Int(midtermScore))
         } else if (sectionControl.selectedSegmentIndex == 3) {
             projScore = sender.value
-            weightField.text = String(projWeight)
+            scoreField.text = String(Int(projScore))
         } else if (sectionControl.selectedSegmentIndex == 4) {
             participationScore = sender.value
-            weightField.text = String(participationScore)
+            scoreField.text = String(Int(participationScore))
         } else if (sectionControl.selectedSegmentIndex == 5) {
             finalScore = sender.value
-            weightField.text = String(finalScore)
+            scoreField.text = String(Int(finalScore))
         }
         calculateGrade()
     }

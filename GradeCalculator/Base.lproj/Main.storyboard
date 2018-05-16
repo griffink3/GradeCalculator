@@ -101,9 +101,6 @@
                                     </fragment>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="setFinalWeight:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="HQV-IC-S0q"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvQ-NE-TpA">
                                 <rect key="frame" x="160" y="156" width="58" height="25"/>
@@ -321,9 +318,6 @@
                                     </fragment>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="setDesiredGrade:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="o7m-VJ-UfE"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.80218841862375834" green="0.97081581608347722" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -479,6 +473,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="33R-Sa-fsO"/>
+        <segue reference="mhz-bx-N7a"/>
+        <segue reference="si8-Ur-D9h"/>
     </inferredMetricsTieBreakers>
 </document>
