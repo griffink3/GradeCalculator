@@ -269,38 +269,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setFields()
     }
     
-//    @IBAction func beginSettingFinalWeight(_ sender: UITextField) {
-//        activeField = sender
-//    }
-//
-//    @IBAction func beginSettingDesiredGrade(_ sender: UITextField) {
-//        activeField = sender
-//    }
-//
-//    @IBAction func setFinalWeight(_ sender: UITextField) {
-//        if (Float(sender.text!) == nil) {
-//            errorLabel.text = "Please enter a valid number"
-//        } else {
-//            finalGradeWeight = Float(sender.text!)!
-//            errorLabel.text = " "
-//        }
-//        sender.resignFirstResponder()
-//        textFieldShouldReturn(sender)
-//        activeField = nil
-//    }
-//
-//    @IBAction func setDesiredGrade(_ sender: UITextField) {
-//        if (Float(sender.text!) == nil) {
-//            errorLabel.text = "Please enter a valid number"
-//        } else {
-//            desiredFinal = Float(sender.text!)!
-//            errorLabel.text = " "
-//        }
-//        sender.resignFirstResponder()
-//        textFieldShouldReturn(sender)
-//        activeField = nil
-//    }
-    
     @IBAction func adjustWeightSlider(_ sender: UISlider) {
         if (sectionControl.selectedSegmentIndex == 0) {
             hwWeight = sender.value
