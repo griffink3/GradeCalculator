@@ -207,6 +207,47 @@ class ViewController2: UIViewController, UITextFieldDelegate, UIPickerViewDelega
         }
     }
     
+    func setFields() {
+        weightField1.text = String(semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[1]!.weight)
+        weightField2.text = String(semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[2]!.weight)
+        weightField3.text = String(semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[3]!.weight)
+        weightField4.text = String(semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[4]!.weight)
+        weightField5.text = String(semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[5]!.weight)
+        weightField6.text = String(semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[6]!.weight)
+        setGradePickers(classNum: 1, picker: gradePicker1)
+        setGradePickers(classNum: 2, picker: gradePicker2)
+        setGradePickers(classNum: 3, picker: gradePicker3)
+        setGradePickers(classNum: 4, picker: gradePicker4)
+        setGradePickers(classNum: 5, picker: gradePicker5)
+        setGradePickers(classNum: 6, picker: gradePicker6)
+    }
+    
+    func setGradePickers(classNum: Int, picker: UIPickerView) {
+        if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "A") {
+            picker.selectRow(0, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "A-") {
+            picker.selectRow(1, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "B+") {
+            picker.selectRow(2, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "B") {
+            picker.selectRow(3, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "B-") {
+            picker.selectRow(4, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "C+") {
+            picker.selectRow(5, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "C") {
+            picker.selectRow(6, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "C-") {
+            picker.selectRow(7, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "D+") {
+            picker.selectRow(8, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "D") {
+            picker.selectRow(9, inComponent: 0, animated: true)
+        } else if (semesterToGrades[semesterControl.selectedSegmentIndex]!.classes[classNum]!.grade == "F") {
+            picker.selectRow(10, inComponent: 0, animated: true)
+        }
+    }
+    
     // MARK: UIPickerViewDelegate
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -263,7 +304,7 @@ class ViewController2: UIViewController, UITextFieldDelegate, UIPickerViewDelega
                     semester.classes[2]?.changeWeight(weight: Float(textField.text!)!)
                 }
             }
-        } else if (textField.restorationIdentifier == "class2Weight") {
+        } else if (textField.restorationIdentifier == "class3Weight") {
             for (semNum, semester) in semesterToGrades {
                 if (semesterControl.selectedSegmentIndex == semNum) {
                     semester.classes[3]?.changeWeight(weight: Float(textField.text!)!)
@@ -320,6 +361,10 @@ class ViewController2: UIViewController, UITextFieldDelegate, UIPickerViewDelega
         semesterControl.insertSegment(withTitle: "1", at: 0, animated: true)
         semesterControl.insertSegment(withTitle: "2", at: 1, animated: true)
         setDict()
+    }
+    
+    @IBAction func changeSemester(_ sender: UISegmentedControl) {
+        setFields()
     }
     
     

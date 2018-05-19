@@ -35,9 +35,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var participationScore: Float = 0.0
     var finalWeight: Float = 0.0
     var finalScore: Float = 0.0
-    var desiredFinal: Float = 0.0
     var finalGradeWeight: Float = 0.0
     var activeField: UITextField?
+    var wantedFinal: Float = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +57,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         calculateGrade()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        wantedFinal = 0.0
+        finalGradeWeight = 0.0
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -75,9 +77,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//
-//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -249,7 +248,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if (Float(textField.text!) == nil) {
                 errorLabel.text = "Please enter a valid number"
             } else {
-                desiredFinal = Float(textField.text!)!
+                wantedFinal = Float(textField.text!)!
                 errorLabel.text = " "
             }
         } else if (textField.restorationIdentifier == "finalWeightField") {
@@ -262,6 +261,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         calculateGrade()
         activeField = nil
+        print(wantedFinal)
     }
     
     // MARK: Actions
@@ -338,6 +338,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func calculate(_ sender: UIButton) {
+        setGlobalVar()
         var needed: Float = 0.0
         var grade: Float = 0.0
         var totalWeight: Float = 0.0
@@ -365,14 +366,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             totalWeight = totalWeight + finalWeight
             grade = grade + (finalScore/100)*finalWeight
         }
+        print(wantedFinal)
         if (finalGradeWeight > 0.0) {
-            needed = (desiredFinal/100)*(totalWeight + finalGradeWeight)-grade
+            needed = (wantedFinal/100)*(totalWeight + finalGradeWeight)-grade
             needed = (needed/finalGradeWeight)*100
         } else {
             needed = 0.0
         }
         appDelegate.neededGrade = needed
-        setGlobalVar()
     }
     
     

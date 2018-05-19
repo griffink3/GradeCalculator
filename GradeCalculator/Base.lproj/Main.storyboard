@@ -368,7 +368,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRU-vh-xWx">
-                                <rect key="frame" x="128" y="270" width="118" height="17"/>
+                                <rect key="frame" x="130" y="275" width="118" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="By Griffin for Malu">
@@ -381,7 +381,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nN9-de-gPc">
-                                <rect key="frame" x="56" y="327" width="263" height="45"/>
+                                <rect key="frame" x="58" y="332" width="263" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.41568627450000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -399,22 +399,8 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="33R-Sa-fsO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBr-ud-riu">
-                                <rect key="frame" x="49" y="222" width="277" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Grade Calculator">
-                                        <attributes>
-                                            <font key="NSFont" size="36" name="Avenir-Book"/>
-                                            <font key="NSOriginalFont" size="42" name="Avenir-Book"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-Hv-JMV">
-                                <rect key="frame" x="88" y="389" width="199" height="45"/>
+                                <rect key="frame" x="90" y="394" width="199" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.41568627450000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -432,6 +418,30 @@
                                     <segue destination="AnN-PQ-Qgg" kind="show" id="gIQ-50-OAt"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iIQ-n6-36F">
+                                <rect key="frame" x="51" y="227" width="273.5" height="49.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MoN-xI-Vpr">
+                                        <rect key="frame" x="0.0" y="0.0" width="273.5" height="49.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBr-ud-riu">
+                                                <rect key="frame" x="0.0" y="0.0" width="273.5" height="49.5"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Grade Calculator">
+                                                        <attributes>
+                                                            <font key="NSFont" size="36" name="Avenir-Book"/>
+                                                            <font key="NSOriginalFont" size="42" name="Avenir-Book"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.80218841860000001" green="0.97081581610000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Ywk-uw-g5E"/>
@@ -539,6 +549,9 @@
                                     <segment title="1"/>
                                     <segment title="2"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeSemester:" destination="AnN-PQ-Qgg" eventType="valueChanged" id="0zJ-U0-m2S"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wd5-22-Gcw">
                                 <rect key="frame" x="45" y="160" width="81" height="44"/>
@@ -929,8 +942,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mhz-bx-N7a"/>
         <segue reference="QED-Y2-kHM"/>
-        <segue reference="si8-Ur-D9h"/>
+        <segue reference="33R-Sa-fsO"/>
     </inferredMetricsTieBreakers>
 </document>
